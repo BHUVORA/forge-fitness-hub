@@ -32,9 +32,9 @@ export function Footer() {
           <div>
             <h4 className="font-heading text-sm text-foreground mb-4">Contact</h4>
             <div className="space-y-3 text-sm text-muted-foreground">
-              <div className="flex items-center gap-2"><Phone className="h-4 w-4 text-primary" /> +91 98765 43210</div>
-              <div className="flex items-center gap-2"><Mail className="h-4 w-4 text-primary" /> info@ironforge.gym</div>
-              <div className="flex items-center gap-2"><MapPin className="h-4 w-4 text-primary" /> Mumbai, India</div>
+              <div className="flex items-center gap-2"><Phone className="h-4 w-4 text-primary" /><span>+91 98765 43210</span></div>
+              <div className="flex items-center gap-2"><Mail className="h-4 w-4 text-primary" /><span>info@ironforge.gym</span></div>
+              <div className="flex items-center gap-2"><MapPin className="h-4 w-4 text-primary" /><span>Mumbai, India</span></div>
             </div>
           </div>
 
