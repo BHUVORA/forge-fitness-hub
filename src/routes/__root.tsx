@@ -3,6 +3,7 @@ import { Toaster } from "sonner";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
+import { AuthProvider } from "@/hooks/use-auth";
 
 import appCss from "../styles.css?url";
 
@@ -64,7 +65,7 @@ function RootShell({ children }: { children: React.ReactNode }) {
 
 function RootComponent() {
   return (
-    <>
+    <AuthProvider>
       <Navbar />
       <Outlet />
       <Footer />
@@ -79,6 +80,6 @@ function RootComponent() {
           },
         }}
       />
-    </>
+    </AuthProvider>
   );
 }

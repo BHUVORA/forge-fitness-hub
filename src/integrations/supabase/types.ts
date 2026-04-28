@@ -14,16 +14,168 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      attendance: {
+        Row: {
+          check_in_at: string
+          created_at: string
+          id: string
+          scanned_by: string | null
+          user_id: string
+        }
+        Insert: {
+          check_in_at?: string
+          created_at?: string
+          id?: string
+          scanned_by?: string | null
+          user_id: string
+        }
+        Update: {
+          check_in_at?: string
+          created_at?: string
+          id?: string
+          scanned_by?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      diet_plans: {
+        Row: {
+          calories: number
+          carbs_g: number
+          created_at: string
+          diet_preference: string
+          fats_g: number
+          goal: string
+          id: string
+          inputs: Json
+          meals: Json
+          protein_g: number
+          user_id: string
+        }
+        Insert: {
+          calories: number
+          carbs_g: number
+          created_at?: string
+          diet_preference: string
+          fats_g: number
+          goal: string
+          id?: string
+          inputs: Json
+          meals: Json
+          protein_g: number
+          user_id: string
+        }
+        Update: {
+          calories?: number
+          carbs_g?: number
+          created_at?: string
+          diet_preference?: string
+          fats_g?: number
+          goal?: string
+          id?: string
+          inputs?: Json
+          meals?: Json
+          protein_g?: number
+          user_id?: string
+        }
+        Relationships: []
+      }
+      memberships: {
+        Row: {
+          created_at: string
+          end_date: string
+          id: string
+          plan_name: string
+          price: number
+          start_date: string
+          status: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          end_date: string
+          id?: string
+          plan_name: string
+          price?: number
+          start_date?: string
+          status?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          end_date?: string
+          id?: string
+          plan_name?: string
+          price?: number
+          start_date?: string
+          status?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          full_name: string | null
+          id: string
+          phone: string | null
+          updated_at: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          full_name?: string | null
+          id: string
+          phone?: string | null
+          updated_at?: string
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          full_name?: string | null
+          id?: string
+          phone?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "trainer" | "member"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +302,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "trainer", "member"],
+    },
   },
 } as const
