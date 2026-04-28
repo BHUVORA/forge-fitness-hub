@@ -1,7 +1,8 @@
 import { Link, useLocation } from "@tanstack/react-router";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Dumbbell } from "lucide-react";
+import { Menu, X, Dumbbell, LayoutDashboard } from "lucide-react";
+import { useAuth } from "@/hooks/use-auth";
 
 const navLinks = [
   { to: "/", label: "Home" },
@@ -15,6 +16,7 @@ const navLinks = [
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
+  const { user } = useAuth();
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border/50">
@@ -44,12 +46,21 @@ export function Navbar() {
           </div>
 
           <div className="hidden md:flex items-center gap-3">
-            <Link
-              to="/contact"
-              className="bg-gradient-fire text-primary-foreground px-5 py-2 rounded-lg text-sm font-bold uppercase tracking-wide transition-all hover:scale-105 glow-primary"
-            >
-              Join Now
-            </Link>
+            {user ? (
+              <Link
+                to="/dashboard"
+                className="bg-gradient-fire text-primary-foreground px-5 py-2 rounded-lg text-sm font-bold uppercase tracking-wide transition-all hover:scale-105 glow-primary inline-flex items-center gap-2"
+              >
+                <LayoutDashboard className="h-4 w-4" /> Dashboard
+              </Link>
+            ) : (
+              <Link
+                to="/auth"
+                className="bg-gradient-fire text-primary-foreground px-5 py-2 rounded-lg text-sm font-bold uppercase tracking-wide transition-all hover:scale-105 glow-primary"
+              >
+                Sign In
+              </Link>
+            )}
           </div>
 
           <button
