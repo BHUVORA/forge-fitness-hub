@@ -11,11 +11,15 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as GalleryRouteImport } from './routes/gallery'
+import { Route as DietPlannerRouteImport } from './routes/diet-planner'
+import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ClassesRouteImport } from './routes/classes'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as AdminScannerRouteImport } from './routes/admin.scanner'
 
 const PricingRoute = PricingRouteImport.update({
   id: '/pricing',
@@ -25,6 +29,16 @@ const PricingRoute = PricingRouteImport.update({
 const GalleryRoute = GalleryRouteImport.update({
   id: '/gallery',
   path: '/gallery',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DietPlannerRoute = DietPlannerRouteImport.update({
+  id: '/diet-planner',
+  path: '/diet-planner',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -52,6 +66,16 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/admin/',
+  path: '/admin/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminScannerRoute = AdminScannerRouteImport.update({
+  id: '/admin/scanner',
+  path: '/admin/scanner',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -59,8 +83,12 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/classes': typeof ClassesRoute
   '/contact': typeof ContactRoute
+  '/dashboard': typeof DashboardRoute
+  '/diet-planner': typeof DietPlannerRoute
   '/gallery': typeof GalleryRoute
   '/pricing': typeof PricingRoute
+  '/admin/scanner': typeof AdminScannerRoute
+  '/admin/': typeof AdminIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -68,8 +96,12 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/classes': typeof ClassesRoute
   '/contact': typeof ContactRoute
+  '/dashboard': typeof DashboardRoute
+  '/diet-planner': typeof DietPlannerRoute
   '/gallery': typeof GalleryRoute
   '/pricing': typeof PricingRoute
+  '/admin/scanner': typeof AdminScannerRoute
+  '/admin': typeof AdminIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -78,8 +110,12 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/classes': typeof ClassesRoute
   '/contact': typeof ContactRoute
+  '/dashboard': typeof DashboardRoute
+  '/diet-planner': typeof DietPlannerRoute
   '/gallery': typeof GalleryRoute
   '/pricing': typeof PricingRoute
+  '/admin/scanner': typeof AdminScannerRoute
+  '/admin/': typeof AdminIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -89,8 +125,12 @@ export interface FileRouteTypes {
     | '/auth'
     | '/classes'
     | '/contact'
+    | '/dashboard'
+    | '/diet-planner'
     | '/gallery'
     | '/pricing'
+    | '/admin/scanner'
+    | '/admin/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -98,8 +138,12 @@ export interface FileRouteTypes {
     | '/auth'
     | '/classes'
     | '/contact'
+    | '/dashboard'
+    | '/diet-planner'
     | '/gallery'
     | '/pricing'
+    | '/admin/scanner'
+    | '/admin'
   id:
     | '__root__'
     | '/'
@@ -107,8 +151,12 @@ export interface FileRouteTypes {
     | '/auth'
     | '/classes'
     | '/contact'
+    | '/dashboard'
+    | '/diet-planner'
     | '/gallery'
     | '/pricing'
+    | '/admin/scanner'
+    | '/admin/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -117,8 +165,12 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRoute
   ClassesRoute: typeof ClassesRoute
   ContactRoute: typeof ContactRoute
+  DashboardRoute: typeof DashboardRoute
+  DietPlannerRoute: typeof DietPlannerRoute
   GalleryRoute: typeof GalleryRoute
   PricingRoute: typeof PricingRoute
+  AdminScannerRoute: typeof AdminScannerRoute
+  AdminIndexRoute: typeof AdminIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -135,6 +187,20 @@ declare module '@tanstack/react-router' {
       path: '/gallery'
       fullPath: '/gallery'
       preLoaderRoute: typeof GalleryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/diet-planner': {
+      id: '/diet-planner'
+      path: '/diet-planner'
+      fullPath: '/diet-planner'
+      preLoaderRoute: typeof DietPlannerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -172,6 +238,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/': {
+      id: '/admin/'
+      path: '/admin'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/scanner': {
+      id: '/admin/scanner'
+      path: '/admin/scanner'
+      fullPath: '/admin/scanner'
+      preLoaderRoute: typeof AdminScannerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -181,8 +261,12 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRoute,
   ClassesRoute: ClassesRoute,
   ContactRoute: ContactRoute,
+  DashboardRoute: DashboardRoute,
+  DietPlannerRoute: DietPlannerRoute,
   GalleryRoute: GalleryRoute,
   PricingRoute: PricingRoute,
+  AdminScannerRoute: AdminScannerRoute,
+  AdminIndexRoute: AdminIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
