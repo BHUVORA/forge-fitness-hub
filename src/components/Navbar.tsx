@@ -96,11 +96,11 @@ export function Navbar() {
                 </Link>
               ))}
               <Link
-                to="/contact"
+                to={user ? "/dashboard" : "/auth"}
                 onClick={() => setMobileOpen(false)}
                 className="block bg-gradient-fire text-primary-foreground text-center px-5 py-3 rounded-lg text-sm font-bold uppercase tracking-wide mt-3"
               >
-                Join Now
+                {user ? "Dashboard" : "Sign In"}
               </Link>
             </div>
           </motion.div>
